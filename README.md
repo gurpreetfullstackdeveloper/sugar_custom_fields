@@ -222,19 +222,20 @@ Also, created file “resave_contacts_ext.php”
 ```php
 <?php
 $job_strings[] = 'resave_contacts_without_modifying_date';
-having path 
-C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Ext\ScheduledTasks\resave_contacts_ext.php
 ?>
 ```
 
+having path 
+C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Ext\ScheduledTasks\resave_contacts_ext.php
+
 So, all 4 below points implemented
 
-Add a Scheduler
-A. Create a Scheduler (time-based process, similar to a cron job).
-B. The Scheduler should run once per day and perform the following:
-C. Loop through all Contacts and resave them.
-D. Bonus Points: Ensure the date_modified field does not get updated when saving.
-
+Add a Scheduler  <br>
+A. Create a Scheduler (time-based process, similar to a cron job).<br>
+B. The Scheduler should run once per day and perform the following:<br>
+C. Loop through all Contacts and resave them.<br>
+D. Bonus Points: Ensure the date_modified field does not get updated when saving.<br>
+<br><br><br>
 
 
 <h1>For below task :- </h1>
@@ -299,34 +300,34 @@ class CustomBeforeSaveHook
 ?>
 ```
 
-So, hook created and it called the class  “CustomBeforeSaveHook” and all required functionality of 
+So, hook was created and it called the class  “CustomBeforeSaveHook” and all the required functionality of 
+
+<br>
+Add a Before Save Logic Hook on Contacts<br>
+Create a Before Save Logic Hook for the Contacts module.<br>
+When a Contact record is saved, perform the following:<br>
+Increment counter_c by 1.<br>
+If the record is new, set counter_c = 1.<br>
+If the record already exists, increment the counter by 1.<br>
+Set epoch_time_c to the current epoch timestamp.<br>
+Set epoch_time_utc_c to a formatted UTC timestamp in the format:<br>
+<br>
+implemented using above two files.<br><br><br>
 
 
-Add a Before Save Logic Hook on Contacts
-Create a Before Save Logic Hook for the Contacts module.
-When a Contact record is saved, perform the following:
-Increment counter_c by 1.
-If the record is new, set counter_c = 1.
-If the record already exists, increment the counter by 1.
-Set epoch_time_c to the current epoch timestamp.
-Set epoch_time_utc_c to a formatted UTC timestamp in the format:
+Then followed major step as below:- <br>
+<br>
+Quick Repair and Rebuild<br>
+Run:<br>
+Admin → Repair → Quick Repair and Rebuild<br>
 
-
-implemented using above two files.
-
-
-Then followed major step as below:-
-
-Quick Repair and Rebuild
-Run:
-Admin → Repair → Quick Repair and Rebuild
-This will register the logic hook properly.
-Then, batch file will call the cron.php and will ultimately trigger all active schdulers
-But for testing purpose , I just created and executed the custom scheduler file named “run_custom_scheduler.php” having path
-C:\xampp\htdocs\SugarFresh\run_custom_scheduler.php
-
+This will register the logic hook properly.<br>
+Then, batch file will call the cron.php and will ultimately trigger all active schdulers <br>
+But for testing purpose , I just created and executed the custom scheduler file named “run_custom_scheduler.php” having path <br>
+C:\xampp\htdocs\SugarFresh\run_custom_scheduler.php <br>
+<br>
 Below is the code of above file ➖
-
+<br>
 
 ```php
 <?php
@@ -349,25 +350,25 @@ echo "✅ Custom scheduler executed successfully.\n";
 
 ?>
 ```
-
-So, it called resave_contacts_without_modifying_date();  function 
-
+<br>
+So, it called resave_contacts_without_modifying_date();  function  <br>
+<br>
 And while re-saving the data “before save” hook is called. This is the flow.
-
-==================================
-
-When executing  run_custom_scheduler.php on browser :-
-http://localhost/SugarFresh/run_custom_scheduler.php
-
-It gave below output on browser:-
-
+<br>
+==================================<br>
+<br>
+When executing  run_custom_scheduler.php on browser :-<br>
+http://localhost/SugarFresh/run_custom_scheduler.php<br>
+<br>
+It gave below output on browser:-<br>
+<br><br>
 Running custom scheduler job: resave_contacts_without_modifying_date()... >>> ResaveContactsJob started >>> Resaved Contact ID: 0003f2f8-16bd-11f0-bb02-0068eb5af528 >>> Resaved Contact ID: 007c9712-16bd-11f0-97db-0068eb5af528 >>> Resaved Contact ID: 013166e2-16bd-11f0-b62c-0068eb5af528 >>> Resaved Contact ID: 019d9b6e-16bd-11f0-b5b9-0068eb5af528 >>> Resaved Contact ID: 022885b2-16bd-11f0-942b-0068eb5af528 >>> Resaved Contact ID: 0310d998-16bd-11f0-8c37-0068eb5af528 >>> Resaved Contact ID: 037ef450-16bd-11f0-b0c3-0068eb5af528 >>> Resaved Contact ID: 03dbf9fc-16bd-11f0-9c98-0068eb5af528 >>> Resaved Contact ID: 0446e078-16bd-11f0-bfbc-0068eb5af528 >>> Resaved Contact ID: 04b6ff0c-16bd-11f0-8005-0068eb5af528 >>> ResaveContactsJob completed: 10 contacts processed. ✅ Custom scheduler executed successfully.
-
-The count increased by 1 on every new hit of scheduler as shown below :-
-
-And thus below requirement 
-
-If the record is new, set counter_c = 1.
-If the record already exists, increment the counter by 1.
-
-is satisfied.
+<br><br>
+The count increased by 1 on every new hit of scheduler as shown below :-<br>
+<br><br>
+And thus below requirement <br><br>
+<br>
+If the record is new, set counter_c = 1.<br>
+If the record already exists, increment the counter by 1.<br>
+<br>
+is satisfied.<br>
