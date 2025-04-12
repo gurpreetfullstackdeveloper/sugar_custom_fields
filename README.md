@@ -92,10 +92,10 @@ http://localhost:9200/
 
 
 
-TASK1 - Add Custom Fields to Contacts
-And Add these fields to the Record Layout.
+<h1>TASK1 - Add Custom Fields to Contacts 
+	and add these fields to the Record Layout. </h1>
 
-SugarCRM 14 – Checklist: Add Custom Fields to Contacts Using Studio (Windows)
+<h2>SugarCRM 14 – Checklist: Add Custom Fields to Contacts Using Studio (Windows)</h2>
 
 Step 1: Login
 ☐ Login to SugarCRM as an Administrator.
