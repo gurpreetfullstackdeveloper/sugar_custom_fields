@@ -320,10 +320,13 @@ Then followed major step as below:- <br>
 Quick Repair and Rebuild<br>
 Run:<br>
 Admin → Repair → Quick Repair and Rebuild<br>
+<br>
+This will register the logic hook properly.<br><br><br>
 
-This will register the logic hook properly.<br>
+
 Then, batch file will call the cron.php and will ultimately trigger all active schdulers <br>
-But for testing purpose , I just created and executed the custom scheduler file named “run_custom_scheduler.php” having path <br>
+<br>
+But for testing purpose, I just created and executed the custom scheduler file named “run_custom_scheduler.php” having path <br><br>
 C:\xampp\htdocs\SugarFresh\run_custom_scheduler.php <br>
 <br>
 Below is the code of above file ➖
