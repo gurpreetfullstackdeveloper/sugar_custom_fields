@@ -136,18 +136,19 @@ Step 9: Verify
 
 =========================================================
 
-Task 2: Implement Custom Functionality
-Add a Scheduler
-a. Create a Scheduler (time-based process, similar to a cron job).
-b. The Scheduler should run once per day and perform the following:
-c. Loop through all Contacts and resave them.
-d. Bonus Points: Ensure the date_modified field does not get updated when saving.
+<h1>Task 2: Implement Custom Functionality</h1>
 
+<h2>Add a Scheduler</h2>
+a. Create a Scheduler (time-based process, similar to a cron job). <br>
+b. The Scheduler should run once per day and perform the following: <br>
+c. Loop through all Contacts and resave them. <br>
+d. Bonus Points: Ensure the date_modified field does not get updated when saving. <br>
 
+<br><br>
 
 Scheduler created by code
 http://localhost/SugarFresh/create_scheduler.php
-
+<br><br>
 Code shown as below :-
 
 ```php
@@ -217,12 +218,14 @@ function resave_contacts_without_modifying_date()
 ```
 
 Also, created file “resave_contacts_ext.php”
+
+```php
 <?php
 $job_strings[] = 'resave_contacts_without_modifying_date';
 having path 
 C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Ext\ScheduledTasks\resave_contacts_ext.php
 ?>
-
+```
 
 So, all 4 below points implemented
 
@@ -234,16 +237,16 @@ D. Bonus Points: Ensure the date_modified field does not get updated when saving
 
 
 
-For below task :-
+<h1>For below task :- </h1>
 
-Add a Before Save Logic Hook on Contacts
-Create a Before Save Logic Hook for the Contacts module.
-When a Contact record is saved, perform the following:
-Increment counter_c by 1.
-If the record is new, set counter_c = 1.
-If the record already exists, increment the counter by 1.
-Set epoch_time_c to the current epoch timestamp.
-Set epoch_time_utc_c to a formatted UTC timestamp in the format:
+<h4> Add a Before Save Logic Hook on Contacts </h4>
+<h4> Create a Before Save Logic Hook for the Contacts module.</h4>
+<h4> When a Contact record is saved, perform the following:</h4>
+<h4> Increment counter_c by 1. </h4>
+<h4> If the record is new, set counter_c = 1. </h4>
+<h4> If the record already exists, increment the counter by 1.</h4>
+<h4> Set epoch_time_c to the current epoch timestamp.</h4>
+<h4> Set epoch_time_utc_c to a formatted UTC timestamp in the format:</h4>
 
 is as follows
 
