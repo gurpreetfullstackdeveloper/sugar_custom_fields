@@ -175,6 +175,8 @@ echo "Scheduler created successfully!";
 And it calls function “resave_contacts_without_modifying_date'” created in
 C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Jobs\ResaveContactsJob.php
 Its code as shown below :
+
+```php
 <?php
 
 function resave_contacts_without_modifying_date()
@@ -212,7 +214,7 @@ function resave_contacts_without_modifying_date()
 }
 
 ?>
-
+```
 
 Also, created file “resave_contacts_ext.php”
 <?php
@@ -249,7 +251,7 @@ Created  “logic_hooks.php”   file with the path
 C:\xampp\htdocs\SugarFresh\custom\modules\Contacts\logic_hooks.php
 
 Having below code:-
-
+```php
 <?php
 $hook_array['before_save'][] = array(
 	1,
@@ -259,11 +261,13 @@ $hook_array['before_save'][] = array(
 	'updateFields'
 );
 ?>
+```
 
 Also, created “CustomBeforeSaveHook.php” file having path 
 C:\xampp\htdocs\SugarFresh\custom\modules\Contacts\CustomBeforeSaveHook.php
 Having below code:
 
+```php
 <?php
 
 class CustomBeforeSaveHook
@@ -290,6 +294,7 @@ class CustomBeforeSaveHook
 }
 
 ?>
+```
 
 So, hook created and it called the class  “CustomBeforeSaveHook” and all required functionality of 
 
@@ -319,6 +324,8 @@ C:\xampp\htdocs\SugarFresh\run_custom_scheduler.php
 
 Below is the code of above file ➖
 
+
+```php
 <?php
 define('sugarEntry', true);
 require_once('include/entryPoint.php');
@@ -338,26 +345,20 @@ resave_contacts_without_modifying_date();
 echo "✅ Custom scheduler executed successfully.\n";
 
 ?>
-
+```
 
 So, it called resave_contacts_without_modifying_date();  function 
 
 And while re-saving the data “before save” hook is called. This is the flow.
 
-
 ==================================
 
-When I executed  run_custom_scheduler.php on browser :-
-
-
-And executed on browser as below:-
+When executing  run_custom_scheduler.php on browser :-
 http://localhost/SugarFresh/run_custom_scheduler.php
 
 It gave below output on browser:-
 
 Running custom scheduler job: resave_contacts_without_modifying_date()... >>> ResaveContactsJob started >>> Resaved Contact ID: 0003f2f8-16bd-11f0-bb02-0068eb5af528 >>> Resaved Contact ID: 007c9712-16bd-11f0-97db-0068eb5af528 >>> Resaved Contact ID: 013166e2-16bd-11f0-b62c-0068eb5af528 >>> Resaved Contact ID: 019d9b6e-16bd-11f0-b5b9-0068eb5af528 >>> Resaved Contact ID: 022885b2-16bd-11f0-942b-0068eb5af528 >>> Resaved Contact ID: 0310d998-16bd-11f0-8c37-0068eb5af528 >>> Resaved Contact ID: 037ef450-16bd-11f0-b0c3-0068eb5af528 >>> Resaved Contact ID: 03dbf9fc-16bd-11f0-9c98-0068eb5af528 >>> Resaved Contact ID: 0446e078-16bd-11f0-bfbc-0068eb5af528 >>> Resaved Contact ID: 04b6ff0c-16bd-11f0-8005-0068eb5af528 >>> ResaveContactsJob completed: 10 contacts processed. ✅ Custom scheduler executed successfully.
-
-
 
 The count increased by 1 on every new hit of scheduler as shown below :-
 
