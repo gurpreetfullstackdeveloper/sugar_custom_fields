@@ -1,52 +1,54 @@
 # sugar_custom_fields
 Add Custom Fields to Contacts and Create a Scheduler, Scheduler should run once per day and Create a Before Save Logic Hook for the Contacts module.
 
-SugarCRM 14 - XAMPP Setup Checklist (Windows) 
+SugarCRM 14 - XAMPP Setup Checklist (Windows)
 
 
 Required PHP Extensions
- -------------------------- 	
-1. Enable the following in php.ini 	(C:\xampp\php\php.ini): 	
-- extension=soap --> Required for 	login/authentication 	
-- extension=imap --> For Inbound 	Email and Campaigns 	
-- extension=mysqli --> MySQL DB 	connection 	
-- extension=mbstring --> Multibyte 	string support 	
-- extension=zip --> Module 	loader/upgrades 	
-- extension=curl --> External API 	communication 	
-- extension=json --> REST API & 	data exchange 	
-Action: Remove the semicolon (;) in 	front of each if present, then restart Apache. 	
+--------------------------
+1. Enable the following in php.ini (C:\xampp\php\php.ini):
+- extension=soap --> Required for login/authentication
+- extension=imap --> For Inbound Email and Campaigns
+- extension=mysqli --> MySQL DB connection
+- extension=mbstring --> Multibyte string support
+- extension=zip --> Module loader/upgrades
+- extension=curl --> External API communication
+- extension=json --> REST API & data exchange
+Action: Remove the semicolon (;) in front of each if present, then restart Apache.
 
 
-2. MySQL Configuration Fixes 	
----------------------------- 	
-File: my.ini (inside XAMPP MySQL 	config folder) 	
-- Increase packet size to support 	dummy/sample data load. 	
-Change: max_allowed_packet=128M 	
-Then restart MySQL from XAMPP Control 	Panel. 	
-3. PHP Session Configuration 	
----------------------------- 	
-Ensure sessions work properly: 	
-- session.save_path = "C:\xampp\tmp" 	
-
-	
- 4. Cron Job / Scheduler Setup
- ----------------------------- 	
-To run Sugar Schedulers (cron jobs): 	Create a batch file (e.g., sugar_cron.bat): cd 	C:\xampp\htdocs\SugarFresh 	
-C:\xampp\php\php.exe -f cron.php 	
-Then schedule it in Windows Task 	Scheduler to run whenever you want to execute. 	
+2. MySQL Configuration Fixes
+----------------------------
+File: my.ini (inside XAMPP MySQL config folder)
+- Increase packet size to support dummy/sample data load.
+Change: max_allowed_packet=128M
+Then restart MySQL from XAMPP Control Panel.
 
 
-5. Common Issues and Fixes 	
--------------------------- - 	
-Login Not Redirecting to Dashboard: => 	Fixed by enabling "extension=soap" 	
-- Dummy Data Insert Error 	(max_allowed_packet): => Increased packet size in my.ini 	
-- Session Not Set: => Verified 	session.save_path and tested with script - sugarcrm.log 	
-- SOAP not being loaded, fixed after 	enabling it 	
- 	
+3. PHP Session Configuration
+----------------------------
+Ensure sessions work properly:
+- session.save_path = "C:\xampp\tmp"
+
+
+4. Cron Job / Scheduler Setup
+-----------------------------
+To run Sugar Schedulers (cron jobs): Create a batch file (e.g., sugar_cron.bat): cd C:\xampp\htdocs\SugarFresh
+C:\xampp\php\php.exe -f cron.php
+Then schedule it in Windows Task Scheduler to run whenever you want to execute.
+
+
+5. Common Issues and Fixes
+-------------------------- -
+Login Not Redirecting to Dashboard: => Fixed by enabling "extension=soap"
+- Dummy Data Insert Error (max_allowed_packet): => Increased packet size in my.ini
+- Session Not Set: => Verified session.save_path and tested with script - sugarcrm.log
+- SOAP not being loaded, fixed after enabling it
+
 
 Summary
 -------
- Must-have PHP extensions 	for SugarCRM 14 on XAMPP (Windows): - soap - imap - mbstring - curl 	- json - mysqli - zip 	
+Must-have PHP extensions for SugarCRM 14 on XAMPP (Windows): - soap - imap - mbstring - curl - json - mysqli - zip
 -------
 
 Got error while installation:-
@@ -73,21 +75,18 @@ Now visit:
 
 If Elasticsearch is running, you'll see a JSON response like:
 {
-  "name": "node-name",
-  "cluster_name": "elasticsearch",
-  "cluster_uuid": "...",
-  "version": {
-	"number": "7.17.0",
-	...
-  }
+"name": "node-name",
+"cluster_name": "elasticsearch",
+"cluster_uuid": "...",
+"version": {
+"number": "7.17.0",
+...
+}
 }
 
 Check if Elasticsearch is Running
 Open your browser and visit:
 http://localhost:9200/
-
-
-
 
 
 
@@ -172,9 +171,9 @@ echo "Scheduler created successfully!";
 ?>
 
 
-And it calls function “resave_contacts_without_modifying_date'” created in 
+And it calls function “resave_contacts_without_modifying_date'” created in
 C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Jobs\ResaveContactsJob.php
-Its code as shown below : 
+Its code as shown below :
 <?php
 
 function resave_contacts_without_modifying_date()
@@ -211,12 +210,15 @@ function resave_contacts_without_modifying_date()
 	return true;
 }
 
+?>
+
 
 Also, created file “resave_contacts_ext.php”
 <?php
 $job_strings[] = 'resave_contacts_without_modifying_date';
 having path 
 C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Ext\ScheduledTasks\resave_contacts_ext.php
+?>
 
 
 So, all 4 below points implemented
@@ -255,7 +257,7 @@ $hook_array['before_save'][] = array(
 	'CustomBeforeSaveHook',
 	'updateFields'
 );
-
+?>
 
 Also, created “CustomBeforeSaveHook.php” file having path 
 C:\xampp\htdocs\SugarFresh\custom\modules\Contacts\CustomBeforeSaveHook.php
@@ -286,7 +288,7 @@ class CustomBeforeSaveHook
 	}
 }
 
-
+?>
 
 So, hook created and it called the class  “CustomBeforeSaveHook” and all required functionality of 
 
@@ -334,6 +336,9 @@ resave_contacts_without_modifying_date();
 
 echo "✅ Custom scheduler executed successfully.\n";
 
+?>
+
+
 So, it called resave_contacts_without_modifying_date();  function 
 
 And while re-saving the data “before save” hook is called. This is the flow.
@@ -353,10 +358,6 @@ Running custom scheduler job: resave_contacts_without_modifying_date()... >>> Re
 
 
 
-
-
-
-
 The count increased by 1 on every new hit of scheduler as shown below :-
 
 And thus below requirement 
@@ -364,16 +365,4 @@ And thus below requirement
 If the record is new, set counter_c = 1.
 If the record already exists, increment the counter by 1.
 
-
-
 is satisfied.
-
-
-
-
-
-
-
-
-
-
