@@ -150,6 +150,7 @@ http://localhost/SugarFresh/create_scheduler.php
 
 Code shown as below :-
 
+```php
 <?php
 define('sugarEntry', true);
 require_once('include/entryPoint.php');
