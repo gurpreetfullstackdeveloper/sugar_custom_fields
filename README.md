@@ -170,7 +170,7 @@ $scheduler->modified_user_id = $current_user->id;
 $scheduler->save();
 echo "Scheduler created successfully!";
 ?>
-
+```
 
 And it calls function “resave_contacts_without_modifying_date'” created in
 C:\xampp\htdocs\SugarFresh\custom\modules\Schedulers\Jobs\ResaveContactsJob.php
