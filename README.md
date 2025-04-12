@@ -317,11 +317,11 @@ implemented using above two files.<br><br><br>
 
 Then followed major step as below:- <br>
 <br>
-Quick Repair and Rebuild<br>
+<h2>Quick Repair and Rebuild</h2><br>
 Run:<br>
-Admin → Repair → Quick Repair and Rebuild<br>
+<h2>Admin → Repair → Quick Repair and Rebuild</h2><br>
 <br>
-This will register the logic hook properly.<br><br><br>
+</h3>This will register the logic hook properly.</h3><br><br><br>
 
 
 Then, batch file will call the cron.php and will ultimately trigger all active schdulers <br>
